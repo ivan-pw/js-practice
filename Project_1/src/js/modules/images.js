@@ -1,0 +1,35 @@
+const images = () => {
+  const imgPopup = document.createElement('div');
+  const workSection = document.querySelector('.works');
+  const bigImage = document.createElement('img');
+
+  imgPopup.classList.add('popup');
+  workSection.appendChild(imgPopup);
+
+  imgPopup.style.justifyContent = 'center';
+  imgPopup.style.alignItems = 'center';
+  imgPopup.style.display = 'none';
+
+  bigImage.style.maxHeight = '90vh';
+  bigImage.style.marginTop = '5vh';
+
+  imgPopup.appendChild(bigImage);
+
+  workSection.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const { target } = e;
+
+    if (target && target.classList.contains('preview')) {
+      imgPopup.style.display = 'flex';
+      const path = target.parentNode.getAttribute('href');
+
+      bigImage.setAttribute('src', path);
+    }
+    if (target && target.matches('div.popup')) {
+      imgPopup.style.display = 'none';
+    }
+  });
+};
+
+export default images;
