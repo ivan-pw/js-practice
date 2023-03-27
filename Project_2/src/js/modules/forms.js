@@ -1,3 +1,5 @@
+import { postData } from '../services/requests';
+
 const forms = () => {
   const form = document.querySelectorAll('form');
   const inputs = document.querySelectorAll('input');
@@ -29,17 +31,6 @@ const forms = () => {
   const path = {
     designer: 'assets/server.php',
     question: 'assets/question.php',
-  };
-
-  const postData = async (url, data) => {
-    const res = await fetch(url, {
-      method: 'POST',
-      body: data,
-    });
-
-    const text = await res.text();
-
-    return text;
   };
 
   const clearInputs = () => {
