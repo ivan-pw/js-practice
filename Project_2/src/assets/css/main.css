@@ -1263,6 +1263,21 @@ h4 {
   text-align: center;
 }
 
+.pageup {
+  opacity: 0;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  bottom: 100px;
+  right: 4rem;
+  z-index: 30;
+  background-color: #e819d7;
+  cursor: pointer;
+  outline: 5px solid #e819d73b;
+  transition: 1s all;
+  border-radius: 50%;
+}
+
 @media (max-width: 1399px) {
   .paints {
     display: none;

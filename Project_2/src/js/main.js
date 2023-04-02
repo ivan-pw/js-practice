@@ -8,6 +8,7 @@ import calc from './modules/calc';
 import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
 import burger from './modules/burger';
+import scroll from './modules/scroll';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -29,4 +30,5 @@ window.addEventListener('DOMContentLoaded', () => {
   filter();
   pictureSize('.sizes-block');
   burger('.burger-menu', '.burger');
+  scroll('.pageup');
 });
