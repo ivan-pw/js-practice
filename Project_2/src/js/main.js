@@ -9,6 +9,7 @@ import filter from './modules/filter';
 import pictureSize from './modules/pictureSize';
 import burger from './modules/burger';
 import scroll from './modules/scroll';
+import drop from './modules/drop';
 
 window.addEventListener('DOMContentLoaded', () => {
   modals();
@@ -31,4 +32,5 @@ window.addEventListener('DOMContentLoaded', () => {
   pictureSize('.sizes-block');
   burger('.burger-menu', '.burger');
   scroll('.pageup');
+  drop();
 });
