@@ -1,6 +1,7 @@
 import MainSlider from './modules/slider/slider-main';
 import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/playVideo';
+import Difference from './modules/difference';
 
 window.addEventListener('DOMContentLoaded', () => {
   const mainSlider = new MainSlider({ container: '.page', btns: '.next' });
@@ -35,6 +36,12 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   feedSlider.init();
+
+  new Difference({
+    oldOfficer: '.officerold',
+    newOfficer: '.officernew',
+    items: '.officer__card-item',
+  }).init();
 
   const player = new VideoPlayer('.showup .play', '.overlay');
   player.init();
