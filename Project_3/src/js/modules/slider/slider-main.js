@@ -2,8 +2,8 @@ import Slider from './slider';
 import error from '../error';
 
 export default class MainSlider extends Slider {
-  constructor(btns) {
-    super(btns);
+  constructor(btns, prev) {
+    super(btns, prev);
   }
 
   showSlides(n) {
@@ -27,7 +27,7 @@ export default class MainSlider extends Slider {
         this.hanson.classList.remove('slideInUp');
       }
     } catch (e) {
-      console.log(e);
+      error(e);
     }
 
     Array.from(this.slides).forEach((slide) => {
@@ -41,32 +41,51 @@ export default class MainSlider extends Slider {
     this.showSlides((this.slideIndex += n));
   }
 
+  minusSlides(n) {
+    this.showSlides((this.slideIndex -= n));
+  }
+
+  bindTriggers() {
+    this.btns.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.plusSlides(1);
+      });
+
+      item.parentNode.previousElementSibling.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.slideIndex = 1;
+        this.showSlides(this.slideIndex);
+      });
+    });
+
+    this.prev.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.minusSlides(1);
+      });
+    });
+
+    this.next.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        this.plusSlides(1);
+      });
+    });
+  }
+
   render() {
-    try {
+    if (this.container) {
       try {
         this.hanson = document.querySelector('.hanson');
       } catch (e) {
         error(e);
       }
 
-      this.btns.forEach((item) => {
-        item.addEventListener('click', () => {
-          this.plusSlides(1);
-        });
-
-        item.parentNode.previousElementSibling.addEventListener(
-          'click',
-          (e) => {
-            e.preventDefault();
-            this.slideIndex = 1;
-            this.showSlides(this.slideIndex);
-          }
-        );
-      });
-
       this.showSlides(this.slideIndex);
-    } catch (e) {
-      error(e);
+      this.bindTriggers();
     }
   }
 }

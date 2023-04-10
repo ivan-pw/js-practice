@@ -45,16 +45,21 @@ export default class MiniSlider extends Slider {
   bindTriggers() {
     this.checkButtonsForSiblingsSlides(); // init btnsSlidesSiblings
 
-    this.next.addEventListener('click', () => this.nextSlide());
-    this.prev.addEventListener('click', () => {
-      let active;
-      if (this.btnsSlidesSiblings) {
-        active = this.slides[this.slides.length - 3];
-      } else {
-        active = this.slides[this.slides.length - 1];
-      }
-      this.container.insertBefore(active, this.slides[0]);
-      this.decorizeSlides();
+    this.next.forEach((item) => {
+      item.addEventListener('click', () => this.nextSlide());
+    });
+
+    this.prev.forEach((item) => {
+      item.addEventListener('click', () => {
+        let active;
+        if (this.btnsSlidesSiblings) {
+          active = this.slides[this.slides.length - 3];
+        } else {
+          active = this.slides[this.slides.length - 1];
+        }
+        this.container.insertBefore(active, this.slides[0]);
+        this.decorizeSlides();
+      });
     });
   }
 
