@@ -1,4 +1,5 @@
 import Slider from './slider';
+import error from '../error';
 
 export default class MiniSlider extends Slider {
   constructor(container, next, prev, activeClass, animate, autoplay) {
@@ -62,22 +63,25 @@ export default class MiniSlider extends Slider {
 
     // this.slides = [...this.slides].filter((el) => el.tagName !== 'BUTTON');
     // console.log(this.slides);
+    try {
+      this.container.style.cssText = `
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  align-items: flex-start;
+`;
 
-    this.container.style.cssText = `
-      display: flex;
-      flex-wrap: wrap;
-      overflow: hidden;
-      align-items: flex-start;
-    `;
+      this.bindTriggers();
 
-    this.bindTriggers();
+      this.decorizeSlides();
 
-    this.decorizeSlides();
-
-    if (this.autoplay) {
-      setInterval(() => {
-        this.nextSlide();
-      }, 5000);
+      if (this.autoplay) {
+        setInterval(() => {
+          this.nextSlide();
+        }, 5000);
+      }
+    } catch (e) {
+      error(e);
     }
   }
 }
