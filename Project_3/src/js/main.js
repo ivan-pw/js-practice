@@ -52,8 +52,8 @@ window.addEventListener('DOMContentLoaded', () => {
     items: '.officer__card-item',
   }).init();
 
-  const player = new VideoPlayer('.showup .play', '.overlay');
-  player.init();
+  new VideoPlayer('.showup .play', '.overlay').init();
+  new VideoPlayer('.module__video-item .play', '.overlay').init();
 
   new Forms('form').init();
 });
