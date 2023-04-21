@@ -33,3 +33,35 @@ $('.wrap').html(
 );
 
 $('.dropdown-toggle-js').dropdown();
+
+$('#trigger').click(() => {
+  $('#trigger').createModal({
+    text: {
+      title: 'Modal titleeee',
+      body: 'Hey you!',
+    },
+    btns: {
+      count: 3,
+      settings: [
+        ['Close', ['btn-danger', 'mr-10'], true],
+
+        [
+          'another btn',
+          ['btn-warning', 'mr-10'],
+          false,
+          () => {
+            alert('oh my gosh');
+          },
+        ],
+        [
+          'Save changes',
+          ['btn-success'],
+          false,
+          () => {
+            alert('saved');
+          },
+        ],
+      ],
+    },
+  });
+});
