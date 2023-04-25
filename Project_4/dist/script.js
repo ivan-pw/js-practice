@@ -300,6 +300,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/tabs */ "./src/js/lib/components/tabs.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
 /* harmony import */ var _components_carousel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/carousel */ "./src/js/lib/components/carousel.js");
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/requests */ "./src/js/lib/services/requests.js");
+
 
 
 
@@ -589,6 +591,52 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handle
   return this;
 };
 
+/***/ }),
+
+/***/ "./src/js/lib/services/requests.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/services/requests.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.get = async function (url) {
+  let dataTypeAnswer = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'json';
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Could not fetch ${url}, status ${res.status}`);
+  }
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+    case 'text':
+      return await res.text();
+    case 'blob':
+      return await res.blob();
+    default:
+      return await res.json();
+  }
+};
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.post = async function (url, data) {
+  let dataTypeAnswer = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'text';
+  const res = await fetch(url, {
+    method: 'POST',
+    body: data
+  });
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+    case 'text':
+      return await res.text();
+    case 'blob':
+      return await res.blob();
+    default:
+      return await res.json();
+  }
+};
+
 /***/ })
 
 /******/ 	});
@@ -697,6 +745,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   });
 });
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])().get('https://jsonplaceholder.typicode.com/todos').then(res => console.log(res));
+(0,_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])().post('https://jsonplaceholder.typicode.com/posts').then(res => console.log(res));
 })();
 
 /******/ })()

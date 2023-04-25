@@ -65,3 +65,11 @@ $('#trigger').click(() => {
     },
   });
 });
+
+$()
+  .get('https://jsonplaceholder.typicode.com/todos')
+  .then((res) => console.log(res));
+
+$()
+  .post('https://jsonplaceholder.typicode.com/posts')
+  .then((res) => console.log(res));
